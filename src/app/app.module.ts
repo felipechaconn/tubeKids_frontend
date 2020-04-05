@@ -6,12 +6,13 @@ import { AppComponent } from './app.component';
 import { NavigationComponent } from './shared/navigation/navigation.component';
 import { IndexComponent } from './index/index.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { UserModule } from './user/user.module';
 
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { AuthInterceptor } from './user/shared/authconfig.interceptor';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,11 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
     AppRoutingModule,
 
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -12,7 +12,6 @@ API_URI = "http://localhost:3000/api";
   ) { }
   
   validateUser(query: string){
-    debugger
     const queryString =  query
     console.log('querystring',queryString)
     return this.http.get(`${this.API_URI}/user/verification/${queryString}`);

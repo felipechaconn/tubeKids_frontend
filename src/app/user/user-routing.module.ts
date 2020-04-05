@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { UserValidationComponent }    from './user-validation/user-validation.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
-
+import { AuthguardGuard } from './shared/authguard.guard';
 
 const userRoutes: Routes = [
   {
@@ -11,8 +11,8 @@ const userRoutes: Routes = [
     redirectTo: '/verification'
   },
 
-  { path: 'verification',  component: UserValidationComponent },
-  { path: 'dashboard',  component: UserDashboardComponent },
+  { path: 'verification',  component: UserValidationComponent, canActivate:[AuthguardGuard] },
+  { path: 'dashboard',  component: UserDashboardComponent,canActivate:[AuthguardGuard] },
 
 ];
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import{UserAuthService} from '../user/service/user-auth.service';
+import{UserAuthService} from '../user/auth/user-auth.service';
 import { User } from 'src/app/user/Model/User';
 import { Router } from '@angular/router';
 @Component({
