@@ -1,0 +1,49 @@
+<form *ngIf="validateUser()">
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="../../../assets/images/unlock.png" id="icon" alt="Icon" />
+      </div>
+  
+      <!-- Login Form -->
+      <form>
+        <h3  class="fadeIn first">Your account was verify thanks</h3>
+        <input type="submit" class="fadeIn fourth" value="Continue">
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        
+      </div>
+  
+    </div>
+  </div>
+</form>
+
+<form  *ngIf="invalidUser()">
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="../../../assets/images/lock.png" id="icon" alt="Icon" />
+      </div>
+  
+      <!-- Login Form -->
+      <form>
+        <h3  class="fadeIn first">Check your email to verify your account</h3>
+        <input type="submit" class="fadeIn fourth" value="Resend The code">
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Thanks for your registration</a>
+      </div>
+  
+    </div>
+  </div>
+</form>

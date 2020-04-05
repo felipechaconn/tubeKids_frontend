@@ -1,0 +1,13 @@
+.navbar-brand {
+    height: 100px;
+}
+.logo-image__navbar {
+    width: 100px;
+    height:  100px;
+}
+.title-TubeKids {
+    font-size: 26px;
+    position: relative;
+    left: 100px;
+    bottom: 60px;
+}
