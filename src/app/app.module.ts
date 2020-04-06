@@ -8,14 +8,14 @@ import { IndexComponent } from './index/index.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-
 import { UserModule } from './user/user.module';
-
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { AuthInterceptor } from './user/shared/authconfig.interceptor';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
+
     AppComponent,
     NavigationComponent,
     IndexComponent,
@@ -25,6 +25,7 @@ import { AuthInterceptor } from './user/shared/authconfig.interceptor';
   ],
   imports: [
     BrowserModule,
+    FontAwesomeModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

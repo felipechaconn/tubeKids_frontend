@@ -30,11 +30,13 @@ export class UserAuthService {
 
   // Sign-in
   login(user: User) {
+    debugger
     return this.http
-      .post<any>(`${this.API_URI}/login`, user)
+      .post(`${this.API_URI}/auth/login`, user)
       .subscribe((res: any) => {
-
-        localStorage.setItem("access_token", res.token);
+        debugger
+        console.log(res.JwtToken)
+        localStorage.setItem('access_token', res.JwtToken);
         this.getUserProfile(res._id).subscribe((res) => {
           this.currentUser = res;
           this.router.navigate(["dashboard/" + res.msg._id]);
