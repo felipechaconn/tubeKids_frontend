@@ -12,6 +12,9 @@ import { UserModule } from './user/user.module';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { AuthInterceptor } from './user/shared/authconfig.interceptor';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { VideoListComponent } from './videos/video-list/video-list.component';
+import { VideoFormComponent } from './videos/video-form/video-form.component';
+import { SafePipe } from './_helpers/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     IndexComponent,
     FooterComponent,
     PageNotFoundComponent,
-    
+    VideoListComponent,
+    VideoFormComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

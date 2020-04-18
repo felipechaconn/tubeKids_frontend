@@ -4,6 +4,14 @@ import {
   faCoffee,
   faEnvelope,
   faUserLock,
+  faUser,
+  faUserPlus,
+  faPlus,
+  faSignInAlt,
+  faSignOutAlt,
+  faUserEdit,
+  faBaby,
+  faVideo
 } from "@fortawesome/free-solid-svg-icons";
 import { UserAuthService } from "src/app/user/auth/user-auth.service";
 import { FormGroup, FormControl } from "@angular/forms";
@@ -18,10 +26,17 @@ export class NavigationComponent implements OnInit {
   faCoffee = faCoffee;
   faEnvelope = faEnvelope;
   faUserLock = faUserLock;
+  faUser = faUser;
+  faPlus =faPlus;
+  faSignOutAlt =faSignOutAlt;
+  faUserEdit= faUserEdit;
+  faBaby =faBaby;
+  faSignInAlt =faSignInAlt;
+  faVideo = faVideo;
 
   constructor(
     private router: Router,
-    private userAuthService: UserAuthService
+    private _userAuthService: UserAuthService
   ) {
     this.loginForm = new FormGroup({
       email_user: new FormControl(""),
@@ -30,13 +45,21 @@ export class NavigationComponent implements OnInit {
   }
 
   submitLogin() {
-    debugger;
+    ;
     const userData = this.loginForm.value;
     //esto se debe porque mi base de datos genera estos datos no los necesito.
     console.log(this.loginForm.value);
-    this.userAuthService.login(userData);
+    this._userAuthService.login(userData);
+    document.getElementById('closeModalButton').click();
     //recoordar que en el service el metodo devuelve un subscribe un observable
   }
+
+  submitLogOut() {
+    this._userAuthService.doLogout();
+  }
+  refresh(): void {
+    window.location.reload();
+}
 
   isNotFound() {
     // return true if the current page is Index
@@ -46,6 +69,10 @@ export class NavigationComponent implements OnInit {
     // return true if the current page is Index
     return this.router.url.match("^/explore$");
   }
+  isAddView() {
+    // return true if the current page is Index
+    return this.router.url.match("^/dashboard/add/video");
+  }
   isRegisterVerigicationView() {
     // return true if the current page is Index
     return this.router.url.match("^/tubeKids/registration$");
@@ -53,6 +80,11 @@ export class NavigationComponent implements OnInit {
   isDashboardView() {
     // return true if the current page is home
     return this.router.url.match("^/dashboard$");
+    
+  }
+  isEditView(){
+    // return true if the current page is home
+    return this.router.url.match("^/dashboard/edit/video/:id$");
   }
 
   ngOnInit(): void {}

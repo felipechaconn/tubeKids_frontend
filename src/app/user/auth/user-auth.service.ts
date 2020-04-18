@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
-import { User } from "../model/User";
+import { User } from "../../model/User";
 import { Observable, throwError } from "rxjs";
 import { catchError, map, tap } from "rxjs/operators";
 import { Router } from "@angular/router";
+import * as jwt_decode from 'jwt-decode';
 @Injectable({
   providedIn: "root",
 })
@@ -11,7 +12,7 @@ export class UserAuthService {
   //propiedad para no escribir siempre la api
   API_URI = "http://localhost:3000/api";
   headers = new HttpHeaders().set('Content-Type', 'application/json');
-  currentUser = {};
+  currentUser: number;
 
   constructor(private http: HttpClient, public router: Router) 
   {
@@ -19,10 +20,9 @@ export class UserAuthService {
   }
 
   registerUser(userData: User): Observable<User> {
-    debugger
+    
     let api = `${this.API_URI}/auth/signup`;
     return this.http.post(api, userData).pipe(tap((res:any) => {
-      console.log(res.JwtToken);
       localStorage.setItem('access_token',res.JwtToken);
     }),
       catchError(this.handleError));
@@ -30,33 +30,62 @@ export class UserAuthService {
 
   // Sign-in
   login(user: User) {
-    debugger
+    
     return this.http
       .post(`${this.API_URI}/auth/login`, user)
       .subscribe((res: any) => {
-        debugger
-        console.log(res.JwtToken)
         localStorage.setItem('access_token', res.JwtToken);
-        this.getUserProfile(res._id).subscribe((res) => {
-          this.currentUser = res;
-          this.router.navigate(["dashboard/" + res.msg._id]);
+        this.router.navigate(["dashboard/"]);
+        this.getUserProfile(res.userId).subscribe((res) => {
+          this.currentUser = res.userId;
+          
         });
       });
   }
 
-  getToken() {
+  
+
+  public getToken() {
     return localStorage.getItem("access_token");
   }
 
+  getDataUserFromToken() {
+      const token = jwt_decode(this.getToken());
+      let keys = Object.keys(token)
+      let values = keys.map(k => token[k])
+    return values;
+  }
+
+  getTokenExpirationDate(token: string): Date {
+    const decoded = jwt_decode(token);
+
+    if (decoded.exp === undefined) return null;
+
+    const date = new Date(0); 
+    date.setUTCSeconds(decoded.exp);
+    return date;
+  }
+  isTokenExpired(token?: string): boolean {
+    if(!token) token = this.getToken();
+    if(!token) return true;
+
+    const date = this.getTokenExpirationDate(token);
+    if(date === undefined) return false;
+    return !(date.valueOf() > new Date().valueOf());
+  }
+
+  public getIdUserByEmail(): Observable<any> {
+    const token=  this.getDataUserFromToken();
+    const email= token[1];
+    let api = `${this.API_URI}/user/emailUser/${email}`;
+    return this.http.get(api, { headers: this.headers });
+
+  }
+
   // User profile
-  getUserProfile(id): Observable<any> {
-    let api = `${this.http}/user-profile/${id}`;
-    return this.http.get(api, { headers: this.headers }).pipe(
-      map((res: Response) => {
-        return res || {};
-      }),
-      catchError(this.handleError)
-    );
+  public getUserProfile(idUser: number): Observable<any> {
+    let api = `${this.API_URI}/user/dataUser/${idUser}`;
+    return this.http.get(api,{headers:this.headers});
   }
 
   get isLoggedIn(): boolean {
@@ -67,19 +96,24 @@ export class UserAuthService {
   doLogout() {
     let removeToken = localStorage.removeItem("access_token");
     if (removeToken == null) {
-      this.router.navigate(["log-in"]);
+      this.router.navigate(["explore"]);
     }
   }
-  // Handle Error
-  handleError(error: HttpErrorResponse) {
-    let msg = "";
+
+
+  private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
-      // client-side error
-      msg = error.error.message;
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
     } else {
-      // server-side error
-      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
     }
-    return throwError(msg);
-  }
+    // return an observable with a user-facing error message
+    return throwError(
+      'Something bad happened; please try again later.');
+  };
 }

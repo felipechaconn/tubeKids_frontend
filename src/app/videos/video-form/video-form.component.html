@@ -1,0 +1,29 @@
+
+    <div class="col-md-4 offset-md-2">
+        <div class="card">
+            <div class="card-body">
+                <form action="">
+                    <div class="form-group">
+                        <input type="text" name="title" [(ngModel)]="video.name_video" placeholder="Title" class="form-control" autofocus required>
+                    </div>
+                    <div class="form-group">
+                        <textarea type="text" rows="2" [(ngModel)]="video.description_video" name="descrpition" placeholder="Description" class="form-control" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="url" name="video" [(ngModel)]="video.link_video" placeholder="Video" class="form-control" required>
+                    </div>
+                    <button class="btn btn-success btn-block" (click)="edit ? updateVideo(): saveNewVideo()">
+                        SAVE
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card card-body text-center">
+            <iframe  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen  [src]="'https://www.youtube.com/embed/'+video.link_video | safe: 'resourceUrl' "></iframe>
+            <h3>{{video.id_video }}. {{video.name_video == ''? 'Title Video': video.name_video}}</h3>
+            <p>{{video.description_video ==''? 'Write description about video' : video.description_video}}</p>
+        </div>
+    </div>

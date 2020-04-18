@@ -1,70 +1,218 @@
-<nav class="navbar navbar-expand-lg  navbar-dark bg-dark" *ngIf="isIndexView()">
-    <a class="navbar-brand" href="/">
-      <img class="logo-image__navbar"src="../../../assets/images/icon.png" alt="">
-      <h1 class="title-TubeKids">Tube Kids</h1>
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse " id="navbarNavDropdown">
-      <ul class="navbar-nav  ml-auto ">
-        <li class="nav-item ">
-          <a class="nav-link"  [routerLink]="['/']" >About Us</a>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="modal" data-target="#modalLoginForm">Sign in</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <nav class="navbar navbar-expand-lg  navbar-dark bg-dark" *ngIf="isRegisterVerigicationView()">
-    <a class="navbar-brand" href="/">
-      <img class="logo-image__navbar"src="../../../assets/images/icon.png" alt="">
-      <h1 class="title-TubeKids">Tube Kids</h1>
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse " id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item ">
-          <a class="nav-link"  [routerLink]="['/']" routerLinkActive="active" >Resend E-mail</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+<!--Este navbar se pinta 
+  solo si esta en index-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="isIndexView()">
+  <a class="navbar-brand" href="/">
+    <img
+      class="logo-image__navbar"
+      src="../../../assets/images/icon.png"
+      alt=""
+    />
+    <h1 class="title-TubeKids">Tube Kids</h1>
+  </a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/']">About Us</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="modal" data-target="#modalLoginForm">
+          <fa-icon [icon]="faSignOutAlt"></fa-icon>
+          Sign in</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>
+<!--Este navbar se pinta 
+  solo si esta en verificaction-->
+<nav
+  class="navbar navbar-expand-lg navbar-dark bg-dark"
+  *ngIf="isRegisterVerigicationView()"
+>
+  <a class="navbar-brand" href="/">
+    <img
+      class="logo-image__navbar"
+      src="../../../assets/images/icon.png"
+      alt=""
+    />
+    <h1 class="title-TubeKids">Tube Kids</h1>
+  </a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/']" routerLinkActive="active"
+          >Resend E-mail</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>
+<!--Este navbar se pinta 
+  solo si esta en dashboard-->
+<nav
+  class="navbar navbar-expand-lg navbar-dark bg-dark"
+  *ngIf="isDashboardView() || isAddView() || isEditView()"
+>
+  <a class="navbar-brand" routerLink="/dashboard">
+    <img
+      class="logo-image__navbar"
+      src="../../../assets/images/icon.png"
+      alt=""
+    />
+    <h1 class="title-TubeKids">Tube Kids</h1>
+  </a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav navDashboard">
+      <li class="nav-item dropdown">
+        <a
+          class="addLink nav-link dropdown-toggle"
+          id="navbarDropdownMenuAdd"
+          href="#"
+          routerLinkActive="active"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <fa-icon [icon]="faPlus"></fa-icon>
+          Add
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuAdd">
+          <a class="dropdown-item"  routerLink="dashboard/add/video">
+            <fa-icon [icon]="faVideo"></fa-icon>
+            Video</a
+          >
+          <a class="dropdown-item" href="#">
+            <fa-icon [icon]="faBaby"></fa-icon>
+            Kid</a
+          >
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdownMenuLink"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <fa-icon [icon]="faUser"></fa-icon>
+          Profile
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">
+            <fa-icon [icon]="faUserEdit"></fa-icon>
+            Profile</a
+          >
+          <a class="dropdown-item" href="#">Terms & Conditions</a>
+          <button class="dropdown-item" (click)="submitLogOut()">
+            <fa-icon [icon]="faSignOutAlt"></fa-icon>
+            Log Out
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
 
 <!--Modal Login-->
-<form  [formGroup]="loginForm"  (ngSubmit)=" submitLogin()">
-  <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <fa-icon [icon]="faEnvelope"></fa-icon>
-          <input type="email" id="defaultForm-email" formControlName="email_user" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
+<form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+  <div
+    class="modal fade"
+    id="modalLoginForm"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+          <button
+            type="button"
+            id="closeModalButton"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
+        <div class="modal-body mx-3">
+          <div class="md-form mb-5">
+            <fa-icon [icon]="faEnvelope"></fa-icon>
+            <input
+              type="email"
+              id="defaultForm-email"
+              formControlName="email_user"
+              class="form-control validate"
+            />
+            <label
+              data-error="wrong"
+              data-success="right"
+              for="defaultForm-email"
+              >Your email</label
+            >
+          </div>
 
-        <div class="md-form mb-4">
-          <fa-icon [icon]="faUserLock"></fa-icon>
-          <input type="password" id="defaultForm-pass" formControlName="password_user" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+          <div class="md-form mb-4">
+            <fa-icon [icon]="faUserLock"></fa-icon>
+            <input
+              type="password"
+              id="defaultForm-pass"
+              formControlName="password_user"
+              class="form-control validate"
+            />
+            <label
+              data-error="wrong"
+              data-success="right"
+              for="defaultForm-pass"
+              >Your password</label
+            >
+          </div>
         </div>
-
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button type="submit" class="btn btn-secondary btn-login">Login</button>
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="submit" class="btn btn-secondary btn-login">
+            Login
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </form>

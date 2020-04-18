@@ -1,0 +1,18 @@
+
+<div class="cardVideo col-md-4"  *ngFor= "let video of videos">
+    <div class="card text-center">
+        <div class=" bg-dark  text-white card-header d-flex justify-content-between align-items-center">
+            {{video.name_video}}
+            <button class="btn btn-danger"(click)="deleteVideo(video.id_video)">
+                <fa-icon [icon]="faTrashAlt"></fa-icon>
+            </button>
+        </div>
+            <iframe  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen  [src]="'https://www.youtube.com/embed/'+video.link_video | safe: 'resourceUrl' "></iframe>
+        <div class="card-body">
+            <p>{{video.description_video}}</p>
+            <button href="" class="btn btn-info btn-block" [routerLink]="['edit/video',video.id_video]">
+                EDIT VIDEO
+            </button>
+        </div>
+    </div>
+</div>

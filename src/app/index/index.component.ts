@@ -1,7 +1,7 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import{UserAuthService} from '../user/auth/user-auth.service';
-import { User } from 'src/app/user/Model/User';
+import { User } from '../model/User';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-index',
