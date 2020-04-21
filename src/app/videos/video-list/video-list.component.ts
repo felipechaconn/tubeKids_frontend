@@ -54,15 +54,4 @@ export class VideoListComponent implements OnInit {
       err=> console.log(err)
     );
   }
-  //Esto busca el video por medio del id del usuario
-  // getVideos() {
-  //  let id=  this.getIdUser();
-  //   this._videoService.getVideo(this.idUser).subscribe(
-  //     (res) => {
-  //      this.videos =res;
-  //      console.log(res);
-  //     },
-  //     (err) => console.log(err)
-  //   );
-  // }
 }

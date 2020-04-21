@@ -15,13 +15,15 @@
 .btn-login {
     width: 25em;
 }
-.addLink {
-   padding-right: 40px !important;
-}
+
 .active {
     color: azure !important;
 }
 .navDashboard {
     position: absolute;
-    left: 80%;
+    left: 75%;
+}
+.nav-link {
+    text-align: center;
+    margin: 10px;
 }

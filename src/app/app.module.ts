@@ -15,6 +15,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { VideoListComponent } from './videos/video-list/video-list.component';
 import { VideoFormComponent } from './videos/video-form/video-form.component';
 import { SafePipe } from './_helpers/safe.pipe';
+import { KidListComponent } from './kid/kid-list/kid-list.component';
+import { KidFormComponent } from './kid/kid-form/kid-form.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { SafePipe } from './_helpers/safe.pipe';
     PageNotFoundComponent,
     VideoListComponent,
     VideoFormComponent,
-    SafePipe
+    SafePipe,
+    KidListComponent,
+    KidFormComponent
   ],
   imports: [
     BrowserModule,

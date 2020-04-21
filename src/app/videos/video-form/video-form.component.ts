@@ -30,9 +30,8 @@ export class VideoFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const creatorId = this._userService.getIdUserByEmail();
     //Inserto El Id del usuario a Video
-    creatorId.subscribe(
+    this._userService.getIdUserByEmail().subscribe(
       (res) => {
         this.video.creator.id_user = res;
       },
@@ -45,11 +44,9 @@ export class VideoFormComponent implements OnInit {
     if (params.id) {
       this._videoService.getVideoById(params.id).subscribe(
         (res) => {
-          console.log(res);
+          //If have parameter, set true edit and set video value(res)
           this.video = res;
           this.edit = true;
-          //this.creator = res.creator;
-          console.log("tttt", this.video.creator.id_user);
         },
         (err) => {
           console.log(err);
@@ -65,7 +62,7 @@ export class VideoFormComponent implements OnInit {
     this._videoService.addNewVideo(this.video).subscribe(
       (res) => {
         console.log(res);
-        this.router.navigate(["/dashboard"]);
+        this.router.navigate(["/dashboard/videos"]);
       },
       (err) => console.log(err)
     );
@@ -76,6 +73,7 @@ export class VideoFormComponent implements OnInit {
     this._videoService.updateVideo(this.video.id_video, this.video).subscribe(
       (res) => {
         console.log(res);
+        this.router.navigate(["/dashboard/videos"]);
       },
       (err) => console.log(err)
     );

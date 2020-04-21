@@ -69,9 +69,18 @@ export class NavigationComponent implements OnInit {
     // return true if the current page is Index
     return this.router.url.match("^/explore$");
   }
-  isAddView() {
+  isAddVideoView() {
     // return true if the current page is Index
-    return this.router.url.match("^/dashboard/add/video");
+    return this.router.url.match("^/dashboard/videos/add");
+  }
+  isAddKidView() {
+    // return true if the current page is Index
+    return this.router.url.match("^/dashboard/add/kid");
+  }
+
+  isKidsView() {
+    // return true if the current page is Index
+    return this.router.url.match("^/dashboard/kids");
   }
   isRegisterVerigicationView() {
     // return true if the current page is Index
@@ -79,7 +88,7 @@ export class NavigationComponent implements OnInit {
   }
   isDashboardView() {
     // return true if the current page is home
-    return this.router.url.match("^/dashboard$");
+    return this.router.url.match("^/dashboard/videos$");
     
   }
   isEditView(){

@@ -32,7 +32,7 @@ export class UserValidationComponent implements OnInit {
           res=> {
             console.log(res);
              //esto nos envia a la ruta users
-           this.router.navigate(['dashboard']);
+           this.router.navigate(['dashboard/videos']);
            },
            err => console.error(err)
           )

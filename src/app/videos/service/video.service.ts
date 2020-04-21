@@ -52,7 +52,6 @@ export class VideoService {
 
   updateVideo(idVideo: string | number, updatedVideo: Video): Observable<Video> {
     let api = `${this.API_URI}/video/${idVideo}`;
-
     return this.http.put(api, updatedVideo);
   }
 

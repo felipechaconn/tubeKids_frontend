@@ -35,7 +35,7 @@ export class UserAuthService {
       .post(`${this.API_URI}/auth/login`, user)
       .subscribe((res: any) => {
         localStorage.setItem('access_token', res.JwtToken);
-        this.router.navigate(["dashboard/"]);
+        this.router.navigate(["dashboard/videos"]);
         this.getUserProfile(res.userId).subscribe((res) => {
           this.currentUser = res.userId;
           

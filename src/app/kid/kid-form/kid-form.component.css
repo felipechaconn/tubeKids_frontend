@@ -1,0 +1,11 @@
+.image_Add{
+position: absolute;
+    width: 400px;
+    height: 400px;
+    right: 30%;
+    bottom: 50px;
+  
+}
+@media screen and (min-width: 200px) and (max-width: 400px)  {
+    .image_Add { display: none; }
+}

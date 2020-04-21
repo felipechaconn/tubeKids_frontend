@@ -73,7 +73,7 @@
   solo si esta en dashboard-->
 <nav
   class="navbar navbar-expand-lg navbar-dark bg-dark"
-  *ngIf="isDashboardView() || isAddView() || isEditView()"
+  *ngIf="isDashboardView() || isAddVideoView() || isEditView() || isKidsView()"
 >
   <a class="navbar-brand" routerLink="/dashboard">
     <img
@@ -107,17 +107,44 @@
           aria-haspopup="true"
           aria-expanded="false"
         >
-          <fa-icon [icon]="faPlus"></fa-icon>
-          Add
+        <fa-icon [icon]="faVideo"></fa-icon>
+          Video
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuAdd">
-          <a class="dropdown-item"  routerLink="dashboard/add/video">
-            <fa-icon [icon]="faVideo"></fa-icon>
-            Video</a
+          <a class="dropdown-item"  routerLink="dashboard/videos/add">
+            <fa-icon [icon]="faPlus"></fa-icon>
+            Add</a
           >
-          <a class="dropdown-item" href="#">
+          <a class="dropdown-item" routerLink="dashboard/videos">
+            <fa-icon [icon]="faVideo"></fa-icon>
+            list
+            </a
+          >
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a
+          class="addLink nav-link dropdown-toggle"
+          id="navbarDropdownMenuAdd"
+          href="#"
+          routerLinkActive="active"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <fa-icon [icon]="faBaby"></fa-icon>
+          Kids
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuAdd">
+          <a class="dropdown-item"  routerLink="dashboard/kids/add">
+            <fa-icon [icon]="faPlus"></fa-icon>
+            Add</a
+          >
+          <a class="dropdown-item" routerLink="dashboard/kids">
             <fa-icon [icon]="faBaby"></fa-icon>
-            Kid</a
+            List
+            </a
           >
         </div>
       </li>

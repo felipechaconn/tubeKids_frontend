@@ -1,0 +1,38 @@
+
+
+<div class="col-sm-12 col-md-6 offset-md-6 ">
+    <h1 style="text-align: center;">Add Kids</h1>
+    <div class="card">
+        <div class="card-body">
+            <form action="">
+                <div class="form-group">
+                    <label for="emailKid">First Name:</label>
+                    <input type="text" name="firstNameKid" [(ngModel)]="kid.firstName_kid" placeholder="Kid Name"
+                        class="form-control" autofocus required />
+                </div>
+                <div class="form-group">
+                    <label for="emailKid">Username:</label>
+                    <input type="text" name="usernameKid" [(ngModel)]="kid.username_kid" placeholder="Kid username"
+                        class="form-control" autofocus required />
+                </div>
+                <div class="form-group md-2">
+                    <label for="emailKid">Pin:</label>
+                    <input type="number" name="pinkid" [(ngModel)]="kid.pin_kid" placeholder="Kid Pin"
+                        class="form-control col-md-3 " autofocus required />
+                </div>
+                <div class="form-group md-2">
+                    <label for="emailKid">Birthday:</label>
+                    <input type="date"  name="birthdayKid" [readonly]="edit == true" [(ngModel)]="kid.birthday_kid" placeholder="Birthay date Kid"
+                        class="form-control" autofocus required />
+                </div>
+
+                <button class="btn btn-info btn-block" (click)="edit ? updateKid(): saveNewkid()">
+                    SAVE
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="col-md-6 col-xs-12">
+<img src="../../../assets/images/up.png" class="image_Add" alt="Kids Image">
+</div>

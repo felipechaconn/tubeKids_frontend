@@ -1,0 +1,26 @@
+<h1 style="text-align: center;">KIDS</h1>
+<div class="col-md-12 table-responsive">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">UserName</th>
+            <th scope="col">Birthday</th>
+            <th scope="col">Pin</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let kid of kids">
+            <th scope="row">{{kid.id_kid}}</th>
+            <td>{{kid.firstName_kid}}</td>
+            <td>{{kid.username_kid}}</td>
+            <td>{{kid.birthday_kid}}</td>
+            <td>{{kid.pin_kid}}</td>
+            <td><button style="margin: 0 20px;" class="btn btn-info" [routerLink]="['edit/kid',kid.id_kid]"><fa-icon [icon]="faPenAlt"></fa-icon></button>
+                <button class="btn btn-danger" (click)="deleteVideo(kid.id_kid)"><fa-icon [icon]="faTrashAlt"></fa-icon></button></td>
+          </tr>
+        </tbody>
+      </table>
+</div>
