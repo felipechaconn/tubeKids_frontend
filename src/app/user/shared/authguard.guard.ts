@@ -19,7 +19,7 @@ export class AuthguardGuard implements CanActivate {
       if (this._authService.isLoggedIn !== true) {
         window.alert("Access not allowed!");
         this. _router.navigate(['/explore'])
-      } else if(!this._authService.isTokenExpired) {
+      } else if(this._authService.isTokenExpired()) {
         this._authService.doLogout();
         window.alert("Your token is Expired!");
         this. _router.navigate(['/explore'])

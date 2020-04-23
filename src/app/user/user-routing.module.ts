@@ -8,6 +8,7 @@ import { VideoListComponent } from '../videos/video-list/video-list.component';
 import { VideoFormComponent } from '../videos/video-form/video-form.component';
 import { KidFormComponent } from '../kid/kid-form/kid-form.component';
 import { KidListComponent } from '../kid/kid-list/kid-list.component';
+import { UserTwoFactorAuthComponent } from './user-two-factor-auth/user-two-factor-auth.component';
 
 const userRoutes: Routes = [
   {
@@ -15,7 +16,7 @@ const userRoutes: Routes = [
     redirectTo: '/verification'
   },
 
-  { path: 'verification',  component: UserValidationComponent, canActivate:[AuthguardGuard] },
+  { path: 'verification',  component: UserValidationComponent},
   { path: 'dashboard/videos',  component: VideoListComponent,canActivate:[AuthguardGuard] },
   {
     path: 'dashboard/videos/add',
@@ -24,6 +25,10 @@ const userRoutes: Routes = [
   {
     path: 'dashboard/videos/edit/video/:id',
     component: VideoFormComponent,canActivate:[AuthguardGuard]
+  },
+  {
+    path: 'twoFactor',
+    component: UserTwoFactorAuthComponent
   },
 
   //Kids

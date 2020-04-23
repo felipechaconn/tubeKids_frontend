@@ -24,6 +24,7 @@ export class IndexComponent implements OnInit {
         lastName_user : new FormControl(''),
         password_user : new FormControl(''),
         birthday_user: new FormControl(Date),
+        phone_user: new FormControl(''),
     })
    }
 

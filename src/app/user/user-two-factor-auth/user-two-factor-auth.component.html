@@ -1,0 +1,28 @@
+<form>
+    <div class="wrapper fadeInDown">
+      <div id="formContent">
+        <!-- Tabs Titles -->
+    
+        <!-- Icon -->
+        <div class="fadeIn first">
+          <img src="../../../assets/images/TwoFactor.png" id="icon" alt="Icon" />
+        </div>
+    
+        <!-- Login Form -->
+        <form [formGroup]="verificationForm" (ngSubmit)="verification()">
+          <h3  class="fadeIn first">You have two factor Auth</h3>
+          <p>Check your SMS inbox and copy de code </p>
+          <input type="text" formControlName="code_verify" class="form-contol col-md-4"  required>
+          <input type="submit" class="fadeIn fourth" value="Continue">
+        </form>
+    
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+          
+        </div>
+    
+      </div>
+    </div>
+  </form>
+  
+  

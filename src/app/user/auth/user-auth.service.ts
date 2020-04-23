@@ -34,13 +34,29 @@ export class UserAuthService {
     return this.http
       .post(`${this.API_URI}/auth/login`, user)
       .subscribe((res: any) => {
-        localStorage.setItem('access_token', res.JwtToken);
-        this.router.navigate(["dashboard/videos"]);
-        this.getUserProfile(res.userId).subscribe((res) => {
-          this.currentUser = res.userId;
+        console.log(res);
+        this.currentUser = res.userId;
+        this.router.navigate(["/twoFactor"]);
+        // this.getUserProfile(res.userid).subscribe((res) => {
+        //   
           
-        });
+        // });
       });
+  }
+
+  twoFactorAuth(tokenVerify){
+   let api = `${this.API_URI}/auth/verification/${this.currentUser}`;
+    return this.http
+    .post(api,tokenVerify)
+    .subscribe((res: any) => {
+      console.log('response',res);
+      localStorage.setItem('access_token', res.JwtToken);
+      this.router.navigate(["/dashboard/videos"]);
+      // this.getUserProfile(res.userId).subscribe((res) => {
+      //   this.currentUser = res.userId;
+        
+      // });
+    });
   }
 
   

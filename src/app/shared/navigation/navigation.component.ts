@@ -45,7 +45,6 @@ export class NavigationComponent implements OnInit {
   }
 
   submitLogin() {
-    ;
     const userData = this.loginForm.value;
     //esto se debe porque mi base de datos genera estos datos no los necesito.
     console.log(this.loginForm.value);
