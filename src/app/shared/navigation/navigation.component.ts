@@ -11,17 +11,19 @@ import {
   faSignOutAlt,
   faUserEdit,
   faBaby,
-  faVideo
+  faVideo,
+  faUserShield
 } from "@fortawesome/free-solid-svg-icons";
 import { UserAuthService } from "src/app/user/auth/user-auth.service";
-import { FormGroup, FormControl } from "@angular/forms";
+import { FormGroup, FormControl, Validators, FormBuilder } from "@angular/forms";
 @Component({
   selector: "app-navigation",
   templateUrl: "./navigation.component.html",
   styleUrls: ["./navigation.component.css"],
 })
 export class NavigationComponent implements OnInit {
-  loginForm;
+  loginForm:  FormGroup;
+  submitted = false;
   //icons
   faCoffee = faCoffee;
   faEnvelope = faEnvelope;
@@ -33,18 +35,27 @@ export class NavigationComponent implements OnInit {
   faBaby =faBaby;
   faSignInAlt =faSignInAlt;
   faVideo = faVideo;
+  faUserShield = faUserShield;
 
   constructor(
     private router: Router,
-    private _userAuthService: UserAuthService
-  ) {
-    this.loginForm = new FormGroup({
-      email_user: new FormControl(""),
-      password_user: new FormControl(""),
-    });
+    private _userAuthService: UserAuthService,
+    private formBuilder: FormBuilder
+  ) {}
+  ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      email_user: ['',Validators.required],
+      password_user: ['', Validators.required]
+    })
   }
+   // convenience getter for easy access to form fields
+   get f() { return this.loginForm.controls};
 
   submitLogin() {
+    this.submitted = true;
+    if(this.loginForm.invalid){
+    return;
+    }
     const userData = this.loginForm.value;
     //esto se debe porque mi base de datos genera estos datos no los necesito.
     console.log(this.loginForm.value);
@@ -95,5 +106,5 @@ export class NavigationComponent implements OnInit {
     return this.router.url.match("^/dashboard/edit/video/:id$");
   }
 
-  ngOnInit(): void {}
+
 }
